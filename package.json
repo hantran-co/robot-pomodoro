@@ -1,0 +1,40 @@
+{
+  "name": "robot-pomodoro",
+  "productName": "Robot Pomodoro",
+  "icon": "icon.png",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "concurrently \"npm run dev --prefix frontend\" \"wait-on http://localhost:5173 && electron .\"",
+  "electron": "cross-env NODE_ENV=development electron .",
+  "build": "npm run build --prefix frontend",
+  "build-and-run": "npm run build && cross-env NODE_ENV=production electron .",
+  "start": "electron .",
+  "dist": "npm run build && electron-builder -wm --dir"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "cross-env": "^10.1.0",
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12",
+    "wait-on": "^7.2.0"
+  }
+  ,
+  "build": {
+    "appId": "com.example.robot-pomodoro",
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json",
+      "frontend/dist/**/*"
+    ],
+    "mac": {
+      "target": ["dir", "dmg"]
+    }
+  }
+}
